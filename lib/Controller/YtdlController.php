@@ -16,7 +16,7 @@ class YtdlController extends Controller
 {
     //@config OC\AppConfig
     private $l10n;
-    private $audio_extensions = array("mp3", "m4a", "vorbis");
+    private $audio_extensions = array("mp3", "m4a", "vorbis", "opus");
     private $video_extensions = array("mp4", "webm", "mkv");
     private $uid;
     private $downloadDir;
