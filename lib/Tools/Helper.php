@@ -403,7 +403,8 @@ class Helper
         if (self::getUID()) {
             OC_Util::setupFS();
             //get the real path of the file in the filesystem
-            return \OC\Files\Filesystem::getLocalFile($path);
+//            return \OC\Files\Filesystem::getLocalFile($path);
+              return \OCA\NCDownloader\Tools\File::getLocalFile($path);
         }
         return "";
     }

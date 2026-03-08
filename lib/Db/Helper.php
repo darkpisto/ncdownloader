@@ -35,7 +35,7 @@ class Helper
         $queryBuilder = $this->queryBuilder
             ->select('filename', 'type', 'gid', 'timestamp', 'status')
             ->from($this->table)
-            ->execute();
+            ->executeQuery();
         return $queryBuilder->fetchAll();
     }
 
@@ -46,7 +46,7 @@ class Helper
             ->from($this->table)
             ->where('uid = :uid')
             ->setParameter('uid', $uid)
-            ->execute();
+            ->executeQuery();
         return $queryBuilder->fetchAll();
     }
 
@@ -57,7 +57,7 @@ class Helper
             ->from($this->table)
             ->where('gid = :gid')
             ->setParameter('gid', $gid)
-            ->execute();
+            ->executeQuery();
         return $queryBuilder->fetchColumn();
     }
 
@@ -71,7 +71,7 @@ class Helper
             ->setParameter('uid', $uid)
             ->setParameter('type', ToolsHelper::DOWNLOADTYPE['YOUTUBE-DL'])
             ->orderBy('id', 'DESC')
-            ->execute();
+            ->executeQuery();
         return $qb->fetchAll();
     }
 
@@ -82,7 +82,7 @@ class Helper
             ->from($this->table)
             ->where('gid = :gid')
             ->setParameter('gid', $gid)
-            ->execute();
+            ->executeQuery();
         return $queryBuilder->fetch();
     }
 
@@ -97,7 +97,7 @@ class Helper
             ->delete($this->table)
             ->where('gid = :gid')
             ->setParameter('gid', $gid);
-        return $qb->execute();
+        return $qb->executeStatement();
     }
     public function executeUpdate($sql, $values)
     {
@@ -111,7 +111,7 @@ class Helper
             ->set("status", $query->createNamedParameter($status))
             ->where('gid = :gid')
             ->setParameter('gid', $gid);
-        return $query->execute();
+        return $query->executeStatement();
         //$sql = sprintf("UPDATE %s set status = ? WHERE gid = ?", $this->prefixedTable);
         //$this->execute($sql, [$status, $gid]);
     }
@@ -125,7 +125,7 @@ class Helper
             ->andWhere('filename = :filename')
             ->setParameter('gid', $gid)
             ->setParameter('filename', 'unknown');
-        return $query->execute();
+        return $query->executeStatement();
     }
 
     public function getDBType(): string
